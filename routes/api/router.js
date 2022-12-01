@@ -53,7 +53,26 @@ router.post('/validacao-dados-cnh',validator.ValidacaoDadosCNH, function (req, r
 
 })
 
-/** 檢查 Token 是否有效 */
+router.post('/validacao-dados-basicos',validator.ValidacaoDadosCidadao, function (req, res, next) {
+  try {
+    const successfullyResponse = {
+      description: "Operação realizada com sucesso. Resultado do filtro informado",
+      schema: "#/definitions/DadosCidadaoRetorno"
+    }
+    setTimeout(() => res.json(successfullyResponse), 200)
+    
+  } catch (error) {
+    let ErrorInternoResponse = {
+      description: "Erro interno da aplicação",
+      schema: "#/definitions/Erro"
+    }
+    res.status(500).json(ErrorInternoResponse)
+
+  }
+
+})
+
+
 router.get('/CR000104', function (req, res, next) {
   const { headers: {authorization = null} } = req
   let response = {
