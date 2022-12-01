@@ -29,25 +29,6 @@ Normally you will get the JSON data as below, that means it works correctly.
 
 ``` json
 {  
-   "account":"WASICHRIS",
-   "email":"chris@big.com",
-   "address":"103 Prince Street",
-   "city":"New York",
-   "state":"NY",
-   "zip":1001,
-   "hasJob":true,
-   "weekdays":[  
-      "monday",
-      "tuesday",
-      "wednesday",
-      "thursday",
-      "friday"
-   ],
-   "skills":[  
-      "react",
-      "vue"
-   ],
-   "sex":"male",
-   "isEmployee":true
+   
 }
 ```
