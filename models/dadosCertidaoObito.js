@@ -6,10 +6,10 @@ class CertidaoModel {
       this.indiceNomeGenitor2 =new Boolean( indiceNomeGenitor2);
       this.inDataObito =  new Boolean(inDataObito);
       this.indiceNomeCartorio =  new Boolean(indiceNomeCartorio);
+      this.inCNPJCartorio =  new Boolean(inCNPJCartorio);
       this.indiceNomeFalecido  =  new Boolean(indiceNomeFalecido);
       this.indataRegistro =  new Boolean(indataRegistro);
       this.indataNascimento =  new Boolean(indataNascimento);
-      this.inCNPJCartorio =  new Boolean(inCNPJCartorio);
       
     }
   }

@@ -1,43 +1,107 @@
 
 const CnhModel = require('./../models/dadosCnhRetorno')
 const CidadaoModel = require('./../models/dadosCidadaoRetorno')
-const CertidaoObito = require('./../models/dadosCertidaoObito')
+const modelCertidaoObito = require('./../models/dadosCertidaoObito')
 
 exports.ValidacaoCertidaoObito = async (req, res, next) => {
-    var inMatricula ;
-    var indiceNomeGenitor1
-    var indiceNomeGenitor2 
-    var indiceNomeCartorio
-    var inCNPJCartorio
-    var indiceNomeFalecido 
-    var indataRegistro
-    var indataNascimento
-    const data = req.body;
-    
-    const DadosCertidaoObito = req.body.DadosCertidaoObito
-    const cpf = DadosCertidaoObito.cpf
-    const matricula =DadosCertidaoObito.matricula
-    const nomeGenitor1 = DadosCertidaoObito.nomeGenitor1
-    const nomeGenitor2 = DadosCertidaoObito.nomeGenitor2
-    const dataObito = DadosCertidaoObito.dataObito
-    const nomeCartorio = DadosCertidaoObito.nomeCartorio
-    const cnpjCartorio =DadosCertidaoObito.cnpjCartorio
-    const nomeFalecido = DadosCertidaoObito.nomeFalecido
-    const dataRegisto =DadosCertidaoObito.dataRegisto
-    const dataNascimento=DadosCertidaoObito.dataNascimento
-
-    const uf= DadosCnh.uf
-    var certiaoObito = new CertidaoObito({inMatricula:inMatricula,indiceNomeGenitor1:indiceNomeGenitor1,indiceNomeGenitor2:indiceNomeGenitor2
-    ,inDataObito:inDataObito,indiceNomeCartorio:indiceNomeCartorio,
-    indiceNomeFalecido :indiceNomeFalecido,indataRegistro:indataRegistro,
-    indataNascimento:indataNascimento,inCNPJCartorio:inCNPJCartorio })
-
+  var inMatricula ;
+  var indiceNomeGenitor1
+  var indiceNomeGenitor2 
+  var indiceNomeCartorio
+  var indiceNomeFalecido
+  var inDataObito
+  var indataRegistro
+  var indataNascimento
+  const data = req.body;
   
-    try {
-
+  const DadosCertidaoObito = req.body.DadosCertidaoObito
   
+  try {
+    var CertidaoObito = new modelCertidaoObito({inMatricula:inMatricula,indiceNomeGenitor1:indiceNomeGenitor1,indiceNomeGenitor2:indiceNomeGenitor2,
+    inDataObito:inDataObito,indiceNomeCartorio:indiceNomeCartorio,indiceNomeFalecido:indiceNomeFalecido,indataRegistro:indataRegistro,indataNascimento:indataNascimento}) 
+    if(!DadosCertidaoObito.cpf){
+      let ErrorNoID = {
+        codigo: 1,
+        descricao: "CPF obrigatório"
+      }
+     res.json(ErrorNoID)
+
     
-      res.json({DadosCidadaoRetorno:certiaoObito } )
+    }
+    else{
+
+      if(!DadosCertidaoObito.matricula){
+        CertidaoObito.inMatricula =false
+        
+      } else{
+        CertidaoObito.inMatricula= true
+        
+      }
+      if(!DadosCertidaoObito.nomeGenitor1){
+        CertidaoObito.indiceNomeGenitor1=false
+        
+      }else{
+        CertidaoObito.indiceNomeGenitor1=true
+        
+      }
+      if(!DadosCertidaoObito.nomeGenitor2){
+        CertidaoObito.indiceNomeGenitor2=false
+        
+      }else{
+        CertidaoObito.indiceNomeGenitor2=true
+        
+      }
+      if(!DadosCertidaoObito.dataObito){
+        CertidaoObito.inDataObito=false
+      }
+      else{
+        CertidaoObito.inDataObito=true
+        
+      }
+      if(!DadosCertidaoObito.nomeCartorio){
+        CertidaoObito.indiceNomeCartorio=false
+        
+      }
+      else{
+        CertidaoObito.indiceNomeCartorio=true
+        
+      }
+      if(!DadosCertidaoObito.cnpjCartorio){
+        CertidaoObito.inCNPJCartorio =false
+        
+      }
+      else{
+        CertidaoObito.inCNPJCartorio =true
+        
+      }
+      if(!DadosCertidaoObito.nomeFalecido){
+        CertidaoObito.indiceNomeFalecido =false
+        
+      }
+      else{
+        CertidaoObito.indiceNomeFalecido =true
+        
+      }
+      if(!DadosCertidaoObito.dataRegisto){
+        CertidaoObito.indataRegistro =false
+        
+      }
+      else{
+        CertidaoObito.indataRegistro =true
+        
+      }
+      if(!DadosCertidaoObito.dataNascimento){
+        CertidaoObito.indataNascimento =false
+        
+      }
+      else{
+        CertidaoObito.indataNascimento =true
+        
+      }
+      
+    }                  
+      res.json(CertidaoObito)
+           
      
     } catch (e) {
       console.log(`erro>> ${e}`);
