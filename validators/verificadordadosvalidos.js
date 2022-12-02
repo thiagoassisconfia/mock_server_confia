@@ -1,19 +1,44 @@
 
 const CnhModel = require('./../models/dadosCnhRetorno')
 const CidadaoModel = require('./../models/dadosCidadaoRetorno')
+const CertidaoObito = require('./../models/dadosCertidaoObito')
 
 exports.ValidacaoCertidaoObito = async (req, res, next) => {
+    var inMatricula ;
+    var indiceNomeGenitor1
+    var indiceNomeGenitor2 
+    var indiceNomeCartorio
+    var inCNPJCartorio
+    var indiceNomeFalecido 
+    var indataRegistro
+    var indataNascimento
     const data = req.body;
-    const name = data.name;
-    const description = data.description
+    
+    const DadosCertidaoObito = req.body.DadosCertidaoObito
+    const cpf = DadosCertidaoObito.cpf
+    const matricula =DadosCertidaoObito.matricula
+    const nomeGenitor1 = DadosCertidaoObito.nomeGenitor1
+    const nomeGenitor2 = DadosCertidaoObito.nomeGenitor2
+    const dataObito = DadosCertidaoObito.dataObito
+    const nomeCartorio = DadosCertidaoObito.nomeCartorio
+    const cnpjCartorio =DadosCertidaoObito.cnpjCartorio
+    const nomeFalecido = DadosCertidaoObito.nomeFalecido
+    const dataRegisto =DadosCertidaoObito.dataRegisto
+    const dataNascimento=DadosCertidaoObito.dataNascimento
+
+    const uf= DadosCnh.uf
+    var certiaoObito = new CertidaoObito({inMatricula:inMatricula,indiceNomeGenitor1:indiceNomeGenitor1,indiceNomeGenitor2:indiceNomeGenitor2
+    ,inDataObito:inDataObito,indiceNomeCartorio:indiceNomeCartorio,
+    indiceNomeFalecido :indiceNomeFalecido,indataRegistro:indataRegistro,
+    indataNascimento:indataNascimento,inCNPJCartorio:inCNPJCartorio })
+
   
     try {
-      if (name && description) {
-        return next();
-      } else {
-        
-        res.status(400).json({ description: "Foram identificados erros na validação dos dados", schema: "#/definitions/Erro" });
-      }
+
+  
+    
+      res.json({DadosCidadaoRetorno:certiaoObito } )
+     
     } catch (e) {
       console.log(`erro>> ${e}`);
   
