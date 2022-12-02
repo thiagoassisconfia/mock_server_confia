@@ -19,7 +19,7 @@ exports.ValidacaoCertidaoObito = async (req, res, next) => {
   try {
     var CertidaoObito = new modelCertidaoObito({inMatricula:inMatricula,indiceNomeGenitor1:indiceNomeGenitor1,indiceNomeGenitor2:indiceNomeGenitor2,
     inDataObito:inDataObito,indiceNomeCartorio:indiceNomeCartorio,indiceNomeFalecido:indiceNomeFalecido,indataRegistro:indataRegistro,indataNascimento:indataNascimento}) 
-    if(!DadosCertidaoObito.cpf){
+    if(!DadosCertidaoObito.cpf || typeof "String"){
       let ErrorNoID = {
         codigo: 1,
         descricao: "CPF obrigatório"
@@ -34,28 +34,37 @@ exports.ValidacaoCertidaoObito = async (req, res, next) => {
         CertidaoObito.inMatricula =false
         
       } else{
-        CertidaoObito.inMatricula= true
+        if(typeof DadosCertidaoObito.matricula == "string"){
+          CertidaoObito.inMatricula= true
+        }
         
       }
       if(!DadosCertidaoObito.nomeGenitor1){
         CertidaoObito.indiceNomeGenitor1=false
         
       }else{
-        CertidaoObito.indiceNomeGenitor1=true
+        if(typeof DadosCertidaoObito.indiceNomeGenitor1 == "string"){
+          CertidaoObito.indiceNomeGenitor1=true
+        }
         
       }
       if(!DadosCertidaoObito.nomeGenitor2){
         CertidaoObito.indiceNomeGenitor2=false
         
       }else{
-        CertidaoObito.indiceNomeGenitor2=true
+        if(typeof DadosCertidaoObito.nomeGenitor2 == "string"){
+          CertidaoObito.indiceNomeGenitor2=true
+        }        
         
       }
       if(!DadosCertidaoObito.dataObito){
         CertidaoObito.inDataObito=false
       }
       else{
-        CertidaoObito.inDataObito=true
+        if(typeof DadosCertidaoObito.dataObito == "string"){
+          CertidaoObito.inDataObito=true
+
+        }
         
       }
       if(!DadosCertidaoObito.nomeCartorio){
@@ -63,7 +72,8 @@ exports.ValidacaoCertidaoObito = async (req, res, next) => {
         
       }
       else{
-        CertidaoObito.indiceNomeCartorio=true
+        if(typeof DadosCertidaoObito.nomeCartorio == "string"){
+        CertidaoObito.indiceNomeCartorio=true}
         
       }
       if(!DadosCertidaoObito.cnpjCartorio){
@@ -71,15 +81,21 @@ exports.ValidacaoCertidaoObito = async (req, res, next) => {
         
       }
       else{
-        CertidaoObito.inCNPJCartorio =true
+        if(typeof DadosCertidaoObito.cnpjCartorio == "number"){
+          CertidaoObito.inCNPJCartorio =true
+
+        }
         
       }
       if(!DadosCertidaoObito.nomeFalecido){
+        
         CertidaoObito.indiceNomeFalecido =false
+        
         
       }
       else{
-        CertidaoObito.indiceNomeFalecido =true
+        if(typeof DadosCertidaoObito.nomeFalecido == "string"){
+        CertidaoObito.indiceNomeFalecido =true}
         
       }
       if(!DadosCertidaoObito.dataRegisto){
@@ -87,7 +103,10 @@ exports.ValidacaoCertidaoObito = async (req, res, next) => {
         
       }
       else{
-        CertidaoObito.indataRegistro =true
+        if(typeof DadosCertidaoObito.dataRegisto == "string"){
+          CertidaoObito.indataRegistro =true
+
+        }
         
       }
       if(!DadosCertidaoObito.dataNascimento){
@@ -129,13 +148,20 @@ exports.ValidacaoCertidaoObito = async (req, res, next) => {
             cnhmodel.inPossuiCnh =false
         }
         else{
-            cnhmodel.inPossuiCnh = true
+          if(typeof cpf =='number'){            
+            cnhmodel.inPossuiCnh = true}
+
+            
         }
-         if(!numero){
+         if(!numero  ){
             cnhmodel.inNumero = false
         }
         else{
-            cnhmodel.inNumero = true
+            if(numero.length <=20 && typeof numero =="string"){
+          
+             cnhmodel.inNumero = true
+
+           }
         }
         if(!dataEmissao){
             cnhmodel.inDataEmissao =false
@@ -147,7 +173,10 @@ exports.ValidacaoCertidaoObito = async (req, res, next) => {
             cnhmodel.inUF = false
         }
         else{
+          if(typeof uf =="string"){                      
             cnhmodel.inUF= true
+
+          }
         }
         
           res.json({DadosCnhRetorno:cnhmodel } )
@@ -180,25 +209,36 @@ exports.ValidacaoCertidaoObito = async (req, res, next) => {
             cidadaomodel.indiceNome =false
         }
         else{
-          cidadaomodel.indiceNome = true
+          if(typeof cpf =='number'){            
+            cidadaomodel.indiceNome = true
+            
+          }
         }
         if(!nome){
           cidadaomodel.nome = false
       }
       else{
+        if(typeof nome =="string"){
           cidadaomodel.nome = true
+        }
       }
          if(!nomeMae){
             cidadaomodel.indiceNomeMae = false
         }
         else{
             cidadaomodel.indiceNomeMae = true
+            if(typeof nomeMae =="string"){
+              cidadaomodel.indiceNomeMae = true
+            }
         }
         if(!nomePai){
             cidadaomodel.indiceNomePai =false
         }
         else{
+          if(typeof nome =="string"){
             cidadaomodel.indiceNomePai = true
+           
+          }
         }
         if(!dataNascimento){
             cidadaomodel.inDataNascimento = false
