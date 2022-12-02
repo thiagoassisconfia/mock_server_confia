@@ -2,16 +2,6 @@ var express = require('express')
 var router = express.Router()
 var validator = require('../../validators/verificadordadosvalidos')
 
-/** 登入 */
-router.post('/CR000101', function (req, res, next) {
-  const { headers, body } = req
-  let response = {
-    isPass: true,
-    token: '888899990000'
-  }
-  // res.status(404)
-  setTimeout(() => res.json(response), 500)
-})
 
 
 router.post('/validacao-dados-certidao-obito', validator.ValidacaoCertidaoObito,function (req, res) {
@@ -73,12 +63,6 @@ router.post('/validacao-dados-basicos',validator.ValidacaoDadosCidadao, function
 })
 
 
-router.get('/CR000104', function (req, res, next) {
-  const { headers: {authorization = null} } = req
-  let response = {
-    isPass: !!authorization
-  }
-  setTimeout(() => res.json(response), 200)
-})
+
 
 module.exports = router

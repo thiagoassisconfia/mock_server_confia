@@ -19,16 +19,31 @@ npm start
 
 # Hello World #
 
-After "npm start" and you can use the following URL to check if web API works properly.
+Depois de dar o npm start você fazer uma requisição usando o método POST.
 
-http://localhost:9527/api/CR000102
+http://localhost:9527/api/validacao-dados-cnh
 
 <br>
 
-Normally you will get the JSON data as below, that means it works correctly.
+Exemplo de um JSON de entrada para a validacao de dados CNH.
 
 ``` json
-{  
-   
+
+    {
+  
+  "DadosCnh": 
+    {
+      "cpf": "0435783299",
+      "numero": "teste",
+      "dataEmissao": "14-03-2010",
+      "uf": "DF"
+      
+    }
+    
+    
+  
 }
+  
+   
+
 ```
