@@ -19,7 +19,7 @@ exports.ValidacaoCertidaoObito = async (req, res, next) => {
   try {
     var CertidaoObito = new modelCertidaoObito({inMatricula:inMatricula,indiceNomeGenitor1:indiceNomeGenitor1,indiceNomeGenitor2:indiceNomeGenitor2,
     inDataObito:inDataObito,indiceNomeCartorio:indiceNomeCartorio,indiceNomeFalecido:indiceNomeFalecido,indataRegistro:indataRegistro,indataNascimento:indataNascimento}) 
-    if(!DadosCertidaoObito.cpf || typeof "String"){
+    if(!DadosCertidaoObito.cpf ||typeof DadosCertidaoObito.cpf != "number" ){
       let ErrorNoID = {
         codigo: 1,
         descricao: "CPF obrigatório"
